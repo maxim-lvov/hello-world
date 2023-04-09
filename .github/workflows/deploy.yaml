@@ -8,6 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Helm Deploy
+      uses: vimeda/helm@v1.6.8
+
     - name: 'Deploy'
       uses: 'deliverybot/helm@v1'
       with:
