@@ -1,0 +1,24 @@
+# .github/workflows/deploy.yml
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+      - closed
+jobs:
+  deployment:
+    if: github.event.pull_request.merged == true
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy Helm
+      uses: bitovi/github-actions-deploy-eks-helm@v1.2.3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+        cluster-name: eks_cluster_demo
+        chart-path: .
+        namespace: default
+        name: unqork-hw
