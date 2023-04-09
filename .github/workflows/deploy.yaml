@@ -8,11 +8,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Helm Deploy
-      uses: vimeda/helm@v1.6.8
-
     - name: 'Deploy'
-      uses: 'deliverybot/helm3@v3.0.0-beta.3'
+      uses: 'deliverybot/helm@v1.7.0'
       with:
         release: 'unqork-hw'
         namespace: 'default'
