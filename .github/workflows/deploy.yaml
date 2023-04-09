@@ -3,9 +3,12 @@ name: Deploy
 on:
   push:
     branches:
-      - dev 
+      - main
+    pull_request:
+      - closed
 jobs:
   deployment:
+    if: github.event.pull_request.merged == true
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v1
